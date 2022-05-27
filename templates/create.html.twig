@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Url minimizing!{% endblock %}
+{% block body %}
+    <h1>Url minimizing</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.url) }}
+    {{ form_row(form.ttl) }}
+    {{ form_end(form) }}
+{% endblock %}

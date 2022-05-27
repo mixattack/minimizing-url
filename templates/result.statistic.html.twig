@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Url minimizing result!{% endblock %}
+{% block body %}
+    <h1>Url statistic result</h1>
+    <b>Url</b> - {{result.url}}<br>
+    <b>Minimized url</b> - {{ app.request.getSchemeAndHttpHost() }}/{{result.urlMinimizing}}<br>
+    <b>Time to live</b> - {{result.ttl}}<br>
+    <b>Count redirects</b> - {{result.count}}<br>
+{% endblock %}

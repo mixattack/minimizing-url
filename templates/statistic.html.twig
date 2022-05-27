@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Url statistic!{% endblock %}
+{% block body %}
+    <h1>Url statistic</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.url) }}
+    {{ form_end(form) }}
+{% endblock %}

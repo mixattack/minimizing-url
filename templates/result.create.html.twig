@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Url minimizing result!{% endblock %}
+{% block body %}
+    <h1>Url minimizing result</h1>
+    <b>{{ app.request.getSchemeAndHttpHost() }}/{{minimizing_url}}</b>
+{% endblock %}

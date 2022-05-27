@@ -1,0 +1,39 @@
+FROM php:8.1-fpm-buster
+
+ENV APP_SOURCE /app
+ENV COMPOSER_HOME=/composer
+
+RUN apt-get update && apt-get install -yq \
+        libicu-dev \
+        file \
+        procps \
+        iputils-ping \
+        telnet \
+        curl \
+        vim \
+        openssh-client \
+        git \
+        iproute2 \
+        wget \
+        acl \
+        libzip-dev \
+        libpq-dev \
+    && docker-php-ext-install \
+        zip \
+        intl \
+        opcache \
+        bcmath \
+        pdo \
+        pdo_pgsql \
+        pgsql \
+        sockets \
+        pcntl \
+    && docker-php-ext-configure pcntl --enable-pcntl \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --preview \
+    && chown -R www-data:www-data /composer \
+    && pecl install xdebug-3.1.4 \
+    && echo "zend_extension=`php -i | grep ^extension_dir | cut -f 3 -d ' '`/xdebug.so" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR ${APP_SOURCE}
